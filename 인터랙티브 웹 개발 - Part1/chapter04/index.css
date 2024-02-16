@@ -193,12 +193,13 @@ body {
   padding: 0 28px;
   font-weight: 700;
 } 
+
 /* main */
 section.first_section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh
+  min-height: 100vh
 }
 
 .main-img__wrapper {
@@ -214,13 +215,13 @@ section.first_section {
   width: auto;
   margin: 54px auto 0px;
   gap: 20px;
-  font-size: 40px;
+  font-size: 52px;
   font-weight: 600;
 }
 
 .intro-main p {
   text-align: center;
-  line-height: 50px;
+  line-height: 68px;
 }
 
 .join-us-text {
