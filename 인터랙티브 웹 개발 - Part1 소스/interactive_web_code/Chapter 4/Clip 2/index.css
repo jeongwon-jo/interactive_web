@@ -96,7 +96,7 @@ body {
   animation: upAndDown 1s infinite;
 }
 
-#list-item-wrapper {
+.list-item-wrapper {
   margin: 0 auto 500px;
   width: 383px;
 }

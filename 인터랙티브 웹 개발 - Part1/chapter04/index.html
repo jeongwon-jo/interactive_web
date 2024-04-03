@@ -80,6 +80,60 @@
       <li class="list-item">제휴신용카드</li>
       <li class="list-item">연계대출</li>
     </ul>
+    <main>
+      <section class="panel1-img">
+        <div id="flying_santa">
+          <img src="imgs/santa_img.png" alt="">
+        </div>
+      </section>
+    </main>
   </section>
+  <script>
+    // 리스트 시작지점 (스크롤해서 찾음)
+    const listStyleChangeStartY = 400;
+    // 리스트 끝지점 (스크롤해서 찾음)
+    const listStyleChangeEndY = 2300;
+
+    // 리스트 아이템 배열로 저장
+    const listItems = document.querySelectorAll('.list-item')
+
+    // division : 리스트의 높이 / 아이템의 개수
+    const division = (listStyleChangeEndY - listStyleChangeStartY) / listItems.length;
+
+    const panel1img = document.querySelector('.panel1-img')
+    const flyingSantaImage = document.getElementById('flying_santa')
+
+    window.addEventListener('scroll', ()=> {
+      //스크롤 할때마다 list-item 의 on 클래스를 지움
+      if (document.getElementsByClassName("on").length > 0) {
+        Array.from(document.getElementsByClassName("on")).forEach(
+          function (element) {
+            element.classList.remove('on')
+          }
+        );
+      }
+
+      // 스크롤할때 단어 리스트 영역에 들어오면
+      if (window.scrollY > listStyleChangeStartY && window.scrollY < listStyleChangeEndY) {
+        // 액티브될 단어 index 구하기
+        // 현재 스크롤된 아이템의 위치 / division px
+        let targetIndex = Math.round((window.scrollY - listStyleChangeStartY) / division)
+        // 해당 단어에 액티브 클래스 추가
+        if (listItems[targetIndex]) listItems[targetIndex].classList.add('on')
+      }
+
+      // 산타 이미지 rotate
+      // scrollYBottom = 스크롤하고있는 위치 아래부분
+      const scrollYBottom = window.scrollY + document.documentElement.clientHeight
+
+      if(scrollYBottom > panel1img.offsetTop && scrollYBottom < panel1img.offsetTop + panel1img.offsetHeight + 100) {
+        const translateX = 80 - 80 * (scrollYBottom - panel1img.offsetTop) / (panel1img.offsetHeight + 100)
+        const translateY = -13 + 13 * (scrollYBottom - panel1img.offsetTop) / (panel1img.offsetHeight + 100)
+        const rotationDegree = 23 - 23 * 1.7 * (scrollYBottom - panel1img.offsetTop) / (panel1img.offsetHeight + 100)
+
+        flyingSantaImage.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotationDegree}deg)`
+      }
+    })
+  </script>
 </body>
 </html>
